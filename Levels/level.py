@@ -3,6 +3,7 @@ import pygame
 import time
 from globals import *
 from Sprites.baskets import basket
+import helpers as h
 
 async def level():
 
@@ -10,11 +11,14 @@ async def level():
     # Time
     start_time = time.time()
     clock = pygame.time.Clock()
+    frame = 1
+
+    beats = h.load_beats("level1.json")
 
     run = True
     pygame.mixer.init()
     pygame.mixer.music.set_volume(VOLUME)
-    pygame.mixer.music.load("assets/music/song1.mp3")
+    pygame.mixer.music.load("assets/music/song2.mp3")
     pygame.mixer.music.play()
     while run:
         clock.tick(FPS)
@@ -24,13 +28,19 @@ async def level():
                 run = False
                 quit = True
 
+        h.create_nuts(frame, beats)
+
         SCREEN.fill((0,0,0))
         baskets.draw(SCREEN)
         squirrels.draw(SCREEN)
         for nut in nuts:
             nut.move()
         nuts.draw(SCREEN)
+
+        frame += 1
+
         pygame.display.flip()
+
         await asyncio.sleep(0)
     
     if quit:

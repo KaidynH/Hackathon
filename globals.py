@@ -16,12 +16,16 @@ FPS = 30
 # Music
 VOLUME = 0.2
 
+# Heights
+basket_height = HEIGHT - 100
+nuts_height = 200
+
 # Sprites
 baskets = pygame.sprite.Group(
-    basket((WIDTH * 0.2, HEIGHT - 100)),
-    basket((WIDTH * 0.4, HEIGHT - 100)),
-    basket((WIDTH * 0.6, HEIGHT - 100)),
-    basket((WIDTH * 0.8, HEIGHT - 100))
+    basket((WIDTH * 0.2, basket_height)),
+    basket((WIDTH * 0.4, basket_height)),
+    basket((WIDTH * 0.6, basket_height)),
+    basket((WIDTH * 0.8, basket_height))
 )
 
 squirrels = pygame.sprite.Group(
@@ -32,8 +36,8 @@ squirrels = pygame.sprite.Group(
 )
 
 nuts = pygame.sprite.Group(
-    nut((WIDTH * 0.2, 200)),
-    nut((WIDTH * 0.4, 200)),
-    nut((WIDTH * 0.6, 200)),
-    nut((WIDTH * 0.8, 200))
+    nut((WIDTH * 0.2, nuts_height)),
+    nut((WIDTH * 0.4, nuts_height)),
+    nut((WIDTH * 0.6, nuts_height)),
+    nut((WIDTH * 0.8, nuts_height))
 )

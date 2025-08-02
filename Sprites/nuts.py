@@ -1,6 +1,9 @@
 import pygame
+from globals import *
 
 class nut(pygame.sprite.Sprite):
+    speed = 10
+
     def __init__(self, pos):
         super().__init__()
 
@@ -18,6 +21,7 @@ class nut(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.centerx = pos[0]
         self.rect.centery = pos[1]
+
     
     def move(self):
-        self.rect.centery += 10
+        self.rect.centery += nut.speed
