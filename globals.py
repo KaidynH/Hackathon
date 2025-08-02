@@ -3,6 +3,7 @@ from Sprites.baskets import basket
 from Sprites.squirrels import squirrel
 from Sprites.nuts import nut
 from Sprites.hitboxes import hitbox
+from Sprites.buttons import button
 
 # Screen setup
 WIDTH = 600
@@ -43,11 +44,12 @@ squirrels = pygame.sprite.Group(
     squirrel((WIDTH * 0.8, 200))
 )
 
-nuts = pygame.sprite.Group(
-    nut((WIDTH * 0.2, nuts_height)),
-    nut((WIDTH * 0.4, nuts_height)),
-    nut((WIDTH * 0.6, nuts_height)),
-    nut((WIDTH * 0.8, nuts_height))
+nuts = pygame.sprite.Group()
+
+start_btn = button((WIDTH//2, HEIGHT//2), "start.png", (200,200))
+
+fg = pygame.sprite.Group(
+    start_btn
 )
 
 keys = [

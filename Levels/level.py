@@ -10,7 +10,6 @@ async def level():
     nuts_collected = 0
 
     # Time
-    start_time = time.time()
     clock = pygame.time.Clock()
     frame = 1
 
@@ -20,7 +19,7 @@ async def level():
     # Start music
     pygame.mixer.init()
     pygame.mixer.music.set_volume(VOLUME)
-    pygame.mixer.music.load("music/song1.mp3")
+    pygame.mixer.music.load("music/song2.mp3")
     pygame.mixer.music.play()
 
     # Sound effects
@@ -34,20 +33,10 @@ async def level():
     print(len(beats))
     # Runner variable
     run = True
+    playing = False
     while run:
         # Update fps
         clock.tick(FPS)
-
-        current_time = time.time() - start_time
-        if beats[beat_index] - 0.031 <= current_time and beats[beat_index] + 0.031 >= current_time and beat_index < len(beats)-1:
-            # print("----" if beat_index % 2 == 0 else "beat" if beat_index%3 == 0 else "..")
-            print(beat_index)
-            beat_index += 1
-        elif current_time > beats[beat_index] and beat_index < len(beats)-1:
-            beat_index += 1
-            print("miss", beat_index)
-
-
         
         for event in pygame.event.get():
             # Check to close game
@@ -58,32 +47,54 @@ async def level():
             if event.type == pygame.KEYDOWN:
                 # Nut collection
                 # When a key is pressed, check if nut is colliding with correlating basket
-                key_pressed = False
-                for k in keys:
-                    if event.key == k["key"]:
-                        key_pressed = True
-                        collided_nut = pygame.sprite.spritecollideany(k["hitbox"], nuts)
-                        if collided_nut:
-                            nuts.remove(collided_nut)
-                            break
-                else:
-                    if key_pressed:
-                        wrong_sound.play()
+                if playing:
+                    key_pressed = False
+                    for k in keys:
+                        if event.key == k["key"]:
+                            key_pressed = True
+                            collided_nut = pygame.sprite.spritecollideany(k["hitbox"], nuts)
+                            if collided_nut:
+                                nuts.remove(collided_nut)
+                                break
+                    else:
+                        if key_pressed:
+                            wrong_sound.play()
 
+        if playing:
+            # beat
+            current_time = time.time() - start_time
+            if beats[beat_index] - 0.031 <= current_time and beats[beat_index] + 0.031 >= current_time and beat_index < len(beats)-1:
+                # print("----" if beat_index % 2 == 0 else "beat" if beat_index%3 == 0 else "..")
+                print(beat_index)
+                beat_index += 1
+            elif current_time > beats[beat_index] and beat_index < len(beats)-1:
+                beat_index += 1
+                print("miss", beat_index)
+
+            # Drop nuts
+            h.create_nuts(pygame.mixer.music.get_pos(), nuts_beats)
+
+            squirrels.update()
+            for nut in nuts:
+                nut.move()
+                if nut.rect.y > j_hitbox.rect.bottom:
+                    nut.fail(swoop)  
+        else:
+            if start_btn.is_clicked():
+                playing = True
+                pygame.mixer.music.unload()
+                pygame.mixer.music.load("music/song1.mp3")
+                pygame.mixer.music.play()
+                start_time = time.time()
+                fg.remove(start_btn)
+
+        
         # Screen updates
-        h.create_nuts(pygame.mixer.music.get_pos(), nuts_beats)
-
         SCREEN.fill((0,0,0))
-        squirrels.update()
-
         baskets.draw(SCREEN)
         squirrels.draw(SCREEN)
-        for nut in nuts:
-            nut.move()
-            if nut.rect.y > j_hitbox.rect.bottom:
-                nut.fail(swoop)
-                
         nuts.draw(SCREEN)
+        fg.draw(SCREEN)
 
         frame += 1
 
