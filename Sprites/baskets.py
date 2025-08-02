@@ -6,7 +6,7 @@ class basket(pygame.sprite.Sprite):
         super().__init__()
 
         # Image initialize
-        self.image = pygame.image.load(os.path.join("graphics", "basket.png"))
+        self.image = pygame.image.load("graphics/basket.png")
 
         # Size transformation
         self.width = 75
@@ -18,4 +18,4 @@ class basket(pygame.sprite.Sprite):
         # Set position
         self.rect = self.image.get_rect()
         self.rect.centerx = pos[0]
-        self.rect.centery = pos[1]
+        self.rect.centery = pos[1] 

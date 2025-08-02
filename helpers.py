@@ -14,7 +14,7 @@ def create_nuts(frame:int, beats:list):
     return False
 
 def load_beats(music_data:str):
-    file = open(f"assets/music/{music_data}")
+    file = open(f"music/{music_data}")
     data = json.load(file)
     file.close()
     return data["beats"]
