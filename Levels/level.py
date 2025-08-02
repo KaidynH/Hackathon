@@ -15,6 +15,7 @@ async def level():
     frame = 1
 
     beats2 = h.load_beats("level1.json")
+    print(beats2, len(beats2), beats2[80])
 
     # Start music
     pygame.mixer.init()
@@ -70,7 +71,7 @@ async def level():
                         nuts.remove(collided_nut)
 
         # Screen updates
-        h.create_nuts(frame, beats2)
+        h.create_nuts(pygame.mixer.music.get_pos(), beats2)
 
         SCREEN.fill((0,0,0))
 
