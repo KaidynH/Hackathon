@@ -18,6 +18,9 @@ FPS = 30
 # Music
 VOLUME = 0.2
 
+# Text
+font = pygame.font.Font("fonts/Orbitron-Medium.ttf", 22)
+
 # Heights
 basket_height = HEIGHT - 100
 nuts_height = 200
