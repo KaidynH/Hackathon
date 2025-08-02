@@ -1,5 +1,6 @@
 import pygame
-from globals import *
+import globals as g
+
 
 class nut(pygame.sprite.Sprite):
     speed = 10
@@ -25,3 +26,5 @@ class nut(pygame.sprite.Sprite):
     
     def move(self):
         self.rect.centery += nut.speed
+        if self.rect.top >= g.HEIGHT:
+            self.kill()
