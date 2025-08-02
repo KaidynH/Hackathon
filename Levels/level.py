@@ -64,8 +64,8 @@ async def level():
                     collided_nut = pygame.sprite.spritecollideany(h_hitbox, nuts)
                     if collided_nut:
                         nuts.remove(collided_nut)
-                if event.key == pygame.K_i:
-                    collided_nut = pygame.sprite.spritecollideany(i_hitbox, nuts)
+                if event.key == pygame.K_j:
+                    collided_nut = pygame.sprite.spritecollideany(j_hitbox, nuts)
                     if collided_nut:
                         nuts.remove(collided_nut)
 
