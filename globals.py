@@ -24,7 +24,7 @@ FPS = 30
 VOLUME = 0.2
 
 # Nut image
-nuts_image = pygame.image.load("graphics/nut.png")
+nuts_image = pygame.image.load("graphics/acorn.png")
 nuts_width = 30
 original_width, original_height = nuts_image.get_size()
 aspect_ratio = original_width / original_height
@@ -36,18 +36,19 @@ FADE_SURFACE = pygame.Surface((WIDTH,HEIGHT), pygame.SRCALPHA)
 FADE_FACTOR = 5
 
 # Text
-font = pygame.font.Font("fonts/Orbitron-Medium.ttf", 22)
+font = pygame.font.Font("fonts/Orbitron-Bold.ttf", 22)
 
 # Heights
 basket_height = HEIGHT - 100
 nuts_height = 200
 hitbox_offset = 35
+squirrel_height = 150
 
 # Sprites
-f_basket = basket((WIDTH * 0.2, basket_height))
-g_basket = basket((WIDTH * 0.4, basket_height))
-h_basket = basket((WIDTH * 0.6, basket_height))
-j_basket = basket((WIDTH * 0.8, basket_height))
+f_basket = basket((WIDTH * 0.2, basket_height), "f")
+g_basket = basket((WIDTH * 0.4, basket_height), "g")
+h_basket = basket((WIDTH * 0.6, basket_height), "h")
+j_basket = basket((WIDTH * 0.8, basket_height), "j")
 
 f_hitbox = hitbox((f_basket.rect.centerx-hitbox_offset, f_basket.rect.centery-hitbox_offset))
 g_hitbox = hitbox((g_basket.rect.centerx-hitbox_offset, g_basket.rect.centery-hitbox_offset))
@@ -59,10 +60,10 @@ baskets = pygame.sprite.Group(f_basket, g_basket, h_basket, j_basket)
 hitboxes = pygame.sprite.Group(f_hitbox, g_hitbox, h_hitbox, j_hitbox)
 
 squirrels = pygame.sprite.Group(
-    squirrel((WIDTH * 0.2, 200)),
-    squirrel((WIDTH * 0.4, 200)),
-    squirrel((WIDTH * 0.6, 200)),
-    squirrel((WIDTH * 0.8, 200))
+    squirrel((WIDTH * 0.2, squirrel_height), "guitar"),
+    squirrel((WIDTH * 0.4, squirrel_height), "drum"),
+    squirrel((WIDTH * 0.6, squirrel_height), "mic"),
+    squirrel((WIDTH * 0.8, squirrel_height), "trumpet")
 )
 
 nuts = pygame.sprite.Group()
@@ -74,8 +75,8 @@ fg = pygame.sprite.Group()
 tree = branch((300, 190))
 
 keys = [
-    {"key": pygame.K_f, "hitbox": f_hitbox},
-    {"key": pygame.K_g, "hitbox": g_hitbox},
-    {"key": pygame.K_h, "hitbox": h_hitbox},
-    {"key": pygame.K_j, "hitbox": j_hitbox}
+    {"key": pygame.K_f, "hitbox": f_hitbox, "basket": f_basket},
+    {"key": pygame.K_g, "hitbox": g_hitbox, "basket": g_basket},
+    {"key": pygame.K_h, "hitbox": h_hitbox, "basket": h_basket},
+    {"key": pygame.K_j, "hitbox": j_hitbox, "basket": j_basket}
 ]

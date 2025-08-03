@@ -15,7 +15,6 @@ def create_nuts(music_pos:int, beats:list):
             n = randint(1,4)
             x = WIDTH * n * 0.2
             nuts.add(Nuts.nut((x, nuts_height)))
-            squirrels_list[n-1].unload_nut()
             return beats.pop(0)
     return False
 

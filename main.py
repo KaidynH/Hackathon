@@ -22,5 +22,6 @@ async def main():
         if status == "quit":
             return
         playing = status == "restart"
+
 # Run the game
 asyncio.run(main())
