@@ -20,7 +20,7 @@ async def intro():
     # Animation sprites
     bg_animation = image((534,815), (1068, 1630), "background.png")
     branch_animation = image((300, 200), (800, 450), "branch.png")
-    nut_animation = image((300, 350), (90,90), "nut.png", rot=50)
+    nut_animation = image((300, 345), (90,90), "nut.png", rot=50)
     basket_animation = image((300, 1082), (150,150), "basket.png")
     start_screen = image((300, -400), (600,800), "startScreen.png")
     play_button = button((300, 370), "play.png", (320,90))
@@ -72,8 +72,8 @@ async def intro():
 
         # Shaking animation
         if frame <= 45:
-            branch_animation.shake()
-            nut_animation.shake(yseverity=0)
+            x,y = branch_animation.shake()
+            nut_animation.shake(x=x, y=y)
         elif frame <= 90:
             if not fall_init:
                 curr_pos = nut_animation.get_pos()

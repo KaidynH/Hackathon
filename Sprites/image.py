@@ -32,11 +32,13 @@ class image(pygame.sprite.Sprite):
     def draw(self):
         g.SCREEN.blit(self.image, self.rect)
 
-    def shake(self, xseverity=10, yseverity=10):
-        x = randint(self.x-xseverity, self.x+xseverity)
-        y = randint(self.y-yseverity, self.y+yseverity)
-        self.rect.centerx = x
-        self.rect.centery = y
+    def shake(self, xseverity=7, yseverity=7, x=None, y=None):
+        if (x==None) and (y==None):
+            x = randint(-xseverity, xseverity)
+            y = randint(-yseverity, yseverity)
+        self.rect.centerx += x
+        self.rect.centery += y
+        return x,y
 
     def set_glide(self, frame_duration, start, glide_to):
         x_change = glide_to[0] - start[0]
