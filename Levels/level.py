@@ -46,6 +46,7 @@ async def level():
         s.reset()
     for b in baskets:
         b.reset()
+    nuts.empty()
 
     # Runner variable
     run = True
