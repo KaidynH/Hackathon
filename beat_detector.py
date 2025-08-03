@@ -2,11 +2,12 @@ import librosa
 import numpy as np
 import json
 import random
+from globals import *
 
 # === CONFIG ===
-audio_file = "music/song1.mp3"
+audio_file = song
 output_file = "beatmap.json"
-threshold = 8.5  # Adjust this (higher = fewer beats)
+threshold = 7  # Adjust this (higher = fewer beats)
 
 # === LOAD AUDIO ===
 print("Loading audio...")
