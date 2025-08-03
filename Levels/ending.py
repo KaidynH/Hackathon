@@ -19,7 +19,7 @@ async def ending():
     pygame.mixer.music.play()
 
     # Background image
-    background = pygame.image.load("graphics/background.png")
+    background = pygame.image.load("graphics/forest.png")
     fade = 255
     fg.empty()
     fg.add(restart_btn)

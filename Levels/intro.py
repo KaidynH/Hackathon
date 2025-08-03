@@ -15,11 +15,11 @@ async def intro():
     rustling.play()
 
     # Background image
-    background = pygame.image.load("graphics/background.png")
+    background = pygame.image.load("graphics/forest.png")
 
     # Animation sprites
-    bg_animation = image((534,815), (1068, 1630), "background.png")
-    branch_animation = image((300, 200), (800, 450), "branch.png")
+    bg_animation = image((66,459), (2598, 1365), "forest.png")
+    branch_animation = image((300, 250), (1117, 321), "branch.png")
     nut_animation = image((300, 345), (90,90), "nut.png", rot=50)
     basket_animation = image((300, 1082), (150,150), "basket.png")
     start_screen = image((300, -400), (600,800), "startScreen.png")
@@ -87,7 +87,7 @@ async def intro():
                 branch_animation.set_glide(47, curr_pos, branch_glide)
 
                 curr_pos = bg_animation.get_pos()
-                bg_glide = (curr_pos[0], 363)
+                bg_glide = (curr_pos[0], 7)
                 bg_animation.set_glide(47, curr_pos, bg_glide)
 
                 basket_animation.rect.centerx = nut_animation.rect.centerx

@@ -71,7 +71,7 @@ start_btn = button((WIDTH//2, HEIGHT//2), "start.png", (200,200))
 restart_btn = button((WIDTH//2, HEIGHT//2), "restart.png", (200,200))
 fg = pygame.sprite.Group()
 
-tree = branch((300, 200))
+tree = branch((300, 190))
 
 keys = [
     {"key": pygame.K_f, "hitbox": f_hitbox},

@@ -33,9 +33,10 @@ async def level():
     swoop.set_volume(3)
 
     # Background image
-    background = pygame.image.load("graphics/background.png")
+    background = pygame.image.load("graphics/forest.png")
     fade = 255
     fg.empty()
+    fg.add(tree)
 
     # Sprites edit
     for s in squirrels:
@@ -105,12 +106,13 @@ async def level():
         # Screen updates
         h.create_nuts(pygame.mixer.music.get_pos(), beats)
 
-        SCREEN.fill((0,0,0))
+        # SCREEN.fill((0,0,0))
+        SCREEN.blit(background, (0,-70))
 
         baskets.draw(SCREEN)
-        squirrels.draw(SCREEN)
         nuts.draw(SCREEN)
         fg.draw(SCREEN)
+        squirrels.draw(SCREEN)
         SCREEN.blit(score_txt, (450, 30))
         SCREEN.blit(streak_txt, (450, 60))
 

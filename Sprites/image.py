@@ -32,7 +32,7 @@ class image(pygame.sprite.Sprite):
     def draw(self):
         g.SCREEN.blit(self.image, self.rect)
 
-    def shake(self, xseverity=5, yseverity=10, x=None, y=None):
+    def shake(self, xseverity=5, yseverity=5, x=None, y=None):
         if (x==None) and (y==None):
             x = randint(-xseverity, xseverity)
             y = randint(-yseverity, yseverity)
