@@ -14,17 +14,13 @@ async def level():
     clock = pygame.time.Clock()
     frame = 1
 
-    beats2 = h.load_beats("level1.json")
+    beats = h.load_beats("level1.json")
 
     # Start music
     pygame.mixer.init()
     pygame.mixer.music.set_volume(VOLUME)
-    pygame.mixer.music.load("music/song1.mp3")
+    pygame.mixer.music.load(song)
     pygame.mixer.music.play()
-
-    file = open('beatmap.json', 'r')
-    beats = json.load(file)
-    beat_index = 0
     print(len(beats))
     # Runner variable
     run = True
@@ -33,13 +29,6 @@ async def level():
         clock.tick(FPS)
 
         current_time = time.time() - start_time
-        if beats[beat_index] - 0.031 <= current_time and beats[beat_index] + 0.031 >= current_time and beat_index < len(beats)-1:
-            # print("----" if beat_index % 2 == 0 else "beat" if beat_index%3 == 0 else "..")
-            print(beat_index)
-            beat_index += 1
-        elif current_time > beats[beat_index] and beat_index < len(beats)-1:
-            beat_index += 1
-            print("miss", beat_index)
 
 
         
@@ -70,7 +59,7 @@ async def level():
                         nuts.remove(collided_nut)
 
         # Screen updates
-        h.create_nuts(frame, beats2)
+        h.create_nuts(pygame.mixer.music.get_pos(), beats)
 
         SCREEN.fill((0,0,0))
 

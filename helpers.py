@@ -4,10 +4,12 @@ import Sprites.nuts as Nuts
 import math
 from random import randint
 
-def create_nuts(frame:int, beats:list):
+def create_nuts(music_pos:int, beats:list):
     if len(beats) > 0:
         offset = (basket_height - nuts_height) / Nuts.nut.speed
-        if (frame+offset) == math.floor((beats[0]) * FPS):
+        offset /= FPS
+        music_pos /= 1000.00
+        if (music_pos+offset) >= beats[0]:
             x = WIDTH * randint(1,4) * 0.2
             nuts.add(Nuts.nut((x, nuts_height)))
             return beats.pop(0)
