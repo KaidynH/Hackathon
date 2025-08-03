@@ -12,7 +12,7 @@ class nut(pygame.sprite.Sprite):
         self.image = g.nuts_image
 
         # Size transformation
-        self.width = 80
+        self.width = 90
         original_width, original_height = self.image.get_size()
         aspect_ratio = original_width / original_height
         self.height = int(self.width / aspect_ratio)
