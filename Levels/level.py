@@ -125,7 +125,7 @@ async def level():
         h.create_nuts(pygame.mixer.music.get_pos(), beats)
 
         # SCREEN.fill((0,0,0))
-        SCREEN.blit(background, (0,-70))
+        SCREEN.blit(background, (-30,-40))
 
         baskets.draw(SCREEN)
         nuts.draw(SCREEN)
