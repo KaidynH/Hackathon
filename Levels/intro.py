@@ -23,7 +23,7 @@ async def intro():
     nut_animation = image((300, 345), (320,320), "acorn.png")
     basket_animation = image((300, 1082), (150,150), "baskets/basket0.png")
     start_screen = image((300, -400), (600,800), "startScreen.png")
-    play_button = button((300, 370), "play.png", (320,90))
+    play_button = button((300, 332), "play.png", (320,90))
     animations = pygame.sprite.Group(bg_animation, branch_animation, nut_animation, basket_animation, start_screen)
 
     # Basket ending image
@@ -109,7 +109,7 @@ async def intro():
                 note.play()
 
                 curr_pos = start_screen.get_pos()
-                start_glide = (curr_pos[0], 400)
+                start_glide = (curr_pos[0], 450)
                 start_screen.set_glide(47, curr_pos, start_glide)
 
                 end_init = True
