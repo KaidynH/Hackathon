@@ -7,17 +7,19 @@ import helpers as h
 
 async def level():
     # Score
+    points_per_nut = 5
     nuts_collected = 0
     nuts_total = 0
+    score = 0
     streak = 0
     high_streak = 0
-    score_txt = font.render(f"Score: {nuts_collected}", True, "white")
+    multiplier = 1
+    score_txt = font.render(f"Score: {score}", True, "white")
     streak_txt = font.render(f"Streak: {streak}", True, "white")
 
     # Time
     clock = pygame.time.Clock()
     frame = 1
-
     beats = h.load_beats("level1.json")
 
     # Start music
@@ -72,16 +74,27 @@ async def level():
                         key_pressed = True
                         collided_nut = pygame.sprite.spritecollideany(k["hitbox"], nuts)
                         if collided_nut:
+                            # Remove nut
                             nuts.remove(collided_nut)
+                            # Update score
                             nuts_collected += 1
                             streak += 1
                             if streak > high_streak:
                                 high_streak = streak
-                            print(nuts_collected)
+                            if streak % 5 == 0 and multiplier < 8:
+                                multiplier *= 2
+                            score += points_per_nut * multiplier
+                            # Update basket
+                            basket = k["basket"]
+                            basket.nuts += 1
+                            if basket.nuts % 2 == 0 and basket.nuts <= 6:
+                                basket.update_image()
                             break
                 else:
                     if key_pressed:
                         wrong_sound.play()
+                        streak = 0
+                        multiplier = 1
 
         if not start:
             pygame.mixer.music.play()
@@ -97,8 +110,12 @@ async def level():
             if nut.rect.y > j_hitbox.rect.bottom:
                 nut.fail(swoop)  
                 streak = 0
-        score_txt = font.render(f"Score: {nuts_collected}", True, "white")
-        streak_txt = font.render(f"Streak: {high_streak}", True, "white")
+                multiplier = 1
+
+        
+        score_txt = font.render(str(score), True, "white")
+        streak_txt = font.render(f"Combo: {streak}", True, "white")
+        multiplier_txt = font.render(f"x{multiplier}", True, "white")
         
         # Screen updates
         h.create_nuts(pygame.mixer.music.get_pos(), beats)
@@ -109,8 +126,9 @@ async def level():
         squirrels.draw(SCREEN)
         nuts.draw(SCREEN)
         fg.draw(SCREEN)
-        SCREEN.blit(score_txt, (450, 30))
+        SCREEN.blit(score_txt, (495, 30))
         SCREEN.blit(streak_txt, (450, 60))
+        SCREEN.blit(multiplier_txt, (455, 30))
 
         frame += 1
 
