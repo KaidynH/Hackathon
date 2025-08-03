@@ -19,3 +19,7 @@ class basket(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.centerx = pos[0]
         self.rect.centery = pos[1] 
+        self.pos = pos
+
+    def reset(self):
+        self.__init__(self.pos)

@@ -57,6 +57,8 @@ async def intro():
                 if event.key == pygame.K_q:
                     run = False
                     quit = True
+                if event.key == pygame.K_TAB:
+                    run = False
             
 
         # Screen updates
@@ -77,7 +79,7 @@ async def intro():
         elif frame <= 90:
             if not fall_init:
                 curr_pos = nut_animation.get_pos()
-                nut_glide = (curr_pos[0], 600)
+                nut_glide = (curr_pos[0], 630)
                 nut_animation.set_glide(47, curr_pos, nut_glide)
 
                 curr_pos = branch_animation.get_pos()
@@ -88,6 +90,7 @@ async def intro():
                 bg_glide = (curr_pos[0], 363)
                 bg_animation.set_glide(47, curr_pos, bg_glide)
 
+                basket_animation.rect.centerx = nut_animation.rect.centerx
                 curr_pos = basket_animation.get_pos()
                 basket_glide = (curr_pos[0], 630)
                 basket_animation.set_glide(47, curr_pos, basket_glide)

@@ -10,8 +10,9 @@ async def level():
     nuts_collected = 0
     nuts_total = 0
     streak = 0
-    streak_txt = font.render(f"Score: {streak}", True, "white")
-    score_txt = font.render(f"Streak: {nuts_collected}", True, "white")
+    high_streak = 0
+    score_txt = font.render(f"Score: {nuts_collected}", True, "white")
+    streak_txt = font.render(f"Streak: {streak}", True, "white")
 
     # Time
     clock = pygame.time.Clock()
@@ -40,6 +41,14 @@ async def level():
     # Background image
     background = pygame.image.load("graphics/background.png")
     fade = 255
+    fg.empty()
+    fg.add(start_btn)
+
+    # Sprites edit
+    for s in squirrels:
+        s.reset()
+    for b in baskets:
+        b.reset()
 
     # Runner variable
     run = True
@@ -56,6 +65,13 @@ async def level():
                 quit = True
             
             if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_q:
+                    run = False
+                    quit = True
+                
+                if event.key == pygame.K_TAB:
+                    run = False
+            
                 # Nut collection
                 # When a key is pressed, check if nut is colliding with correlating basket
                 if playing:
@@ -68,6 +84,8 @@ async def level():
                                 nuts.remove(collided_nut)
                                 nuts_collected += 1
                                 streak += 1
+                                if streak > high_streak:
+                                    high_streak = streak
                                 print(nuts_collected)
                                 break
                     else:
@@ -96,7 +114,7 @@ async def level():
                     nut.fail(swoop)  
                     streak = 0
             score_txt = font.render(f"Score: {nuts_collected}", True, "white")
-            streak_txt = font.render(f"Streak: {streak}", True, "white")
+            streak_txt = font.render(f"Streak: {high_streak}", True, "white")
 
         else:
             if start_btn.is_clicked():
@@ -129,7 +147,9 @@ async def level():
 
         await asyncio.sleep(0)
     
+    h.fade_out_animation(clock)
+
     if quit:
         return "quit"
     else:
-        return (nuts_collected, nuts_total, nuts_collected/nuts_total)
+        return (nuts_collected, nuts_total, high_streak)

@@ -56,10 +56,8 @@ squirrels = pygame.sprite.Group(
 nuts = pygame.sprite.Group()
 
 start_btn = button((WIDTH//2, HEIGHT//2), "start.png", (200,200))
-
-fg = pygame.sprite.Group(
-    start_btn
-)
+restart_btn = button((WIDTH//2, HEIGHT//2), "restart.png", (200,200))
+fg = pygame.sprite.Group()
 
 tree = branch((300, 200))
 
