@@ -26,10 +26,6 @@ async def level():
     pygame.mixer.music.load(song)
     pygame.mixer.music.play()
 
-    file = open('beatmap.json', 'r')
-    beats = json.load(file)
-    beat_index = 0
-
     # Background image
     background = pygame.image.load("graphics/background.png")
     fade = 255
@@ -85,18 +81,8 @@ async def level():
                             wrong_sound.play()
 
         if playing:
-            # beat
-            current_time = time.time() - start_time
-            if beats[beat_index] - 0.031 <= current_time and beats[beat_index] + 0.031 >= current_time and beat_index < len(beats)-1:
-                # print("----" if beat_index % 2 == 0 else "beat" if beat_index%3 == 0 else "..")
-                # print(beat_index)
-                beat_index += 1
-            elif current_time > beats[beat_index] and beat_index < len(beats)-1:
-                beat_index += 1
-                # print("miss", beat_index)
-
             # Drop nuts
-            if h.create_nuts(pygame.mixer.music.get_pos(), nuts_beats):
+            if h.create_nuts(pygame.mixer.music.get_pos(), beats):
                 nuts_total += 1
 
             squirrels.update()
@@ -107,15 +93,6 @@ async def level():
                     streak = 0
             score_txt = font.render(f"Score: {nuts_collected}", True, "white")
             streak_txt = font.render(f"Streak: {high_streak}", True, "white")
-
-        else:
-            if start_btn.is_clicked():
-                playing = True
-                pygame.mixer.music.unload()
-                pygame.mixer.music.load("music/song1.mp3")
-                pygame.mixer.music.play()
-                start_time = time.time()
-                fg.remove(start_btn)
 
         
         # Screen updates
