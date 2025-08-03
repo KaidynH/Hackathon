@@ -14,9 +14,6 @@ async def intro():
     rustling = pygame.mixer.Sound("music/leaves.ogg")
     rustling.play()
 
-    # Background image
-    background = pygame.image.load("graphics/forest.png")
-
     # Animation sprites
     bg_animation = image((66,659), (2598, 1465), "forest.png")
     branch_animation = image((300, 250), (1117, 321), "branch.png")
@@ -51,31 +48,15 @@ async def intro():
             # Check to close game
             if event.type == pygame.QUIT:
                 run = False
-                quit = True
+                quit = True            
 
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_q:
-                    run = False
-                    quit = True
-                if event.key == pygame.K_TAB:
-                    run = False
-            
-
-        # Screen updates
-        # SCREEN.fill((1,23,28))
-        # SCREEN.blit(background, (0,0))
-        # print(background.get_rect().center)
-        # bg_animation.draw()
-        # tree.draw()
-        # baskets.draw(SCREEN)
-        # squirrels.draw(SCREEN)
-        # nuts.draw(SCREEN)
-        # fg.draw(SCREEN)
 
         # Shaking animation
         if frame <= 45:
             x,y = branch_animation.shake()
             nut_animation.shake(x=x, y=y)
+
+        # Nut falling animation
         elif frame <= 90:
             if not fall_init:
                 curr_pos = nut_animation.get_pos()
@@ -101,9 +82,9 @@ async def intro():
             branch_animation.glide(branch_glide)
             basket_animation.glide(basket_glide)
 
+        # Starting panel comes down
         else:
             if not end_init:
-                print("end")
                 animations.remove(nut_animation)
                 basket_animation.set_image(basket_nut)
                 note.play()
@@ -119,6 +100,7 @@ async def intro():
                     animations.add(play_button)
                     done_animation = True
             else:
+                # Check if play button is pressed
                 if play_button.is_clicked():
                     run = False
 

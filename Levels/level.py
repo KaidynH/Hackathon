@@ -1,12 +1,9 @@
 import asyncio
 import pygame
-import time
 from globals import *
-import json
 import helpers as h
 
 async def level():
-    print("LEVEL")
     # Score
     points_per_nut = 5
     nuts_collected = 0
@@ -51,7 +48,6 @@ async def level():
 
     # Runner variable
     run = True
-    playing = False
     quit = False
     start = False
     while run:
@@ -65,12 +61,6 @@ async def level():
                 quit = True
             
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_q:
-                    run = False
-                    quit = True
-                
-                if event.key == pygame.K_TAB:
-                    run = False
             
                 # Nut collection
                 # When a key is pressed, check if nut is colliding with correlating basket
@@ -97,18 +87,21 @@ async def level():
                                 basket.update_image()
                             break
                 else:
+                    # Check if wrong key is pressed
                     if key_pressed:
                         wrong_sound.play()
                         streak = 0
                         multiplier = 1
 
         if not start:
+            # Start playing music
             pygame.mixer.music.play()
             start = True
 
         # Drop nuts
         h.create_nuts(pygame.mixer.music.get_pos(), beats)
 
+        # Animation
         squirrels.update()
         for nut in nuts:
             nut.move()
@@ -117,7 +110,7 @@ async def level():
                 streak = 0
                 multiplier = 1
 
-        
+        # Score texts        
         score_txt = font.render(str(score), True, "white")
         streak_txt = font.render(f"Combo: {streak}", True, "white")
         multiplier_txt = font.render(f"x{multiplier}", True, "white")
@@ -128,6 +121,7 @@ async def level():
         # SCREEN.fill((0,0,0))
         SCREEN.blit(background, (-30,-40))
 
+        # Draw on screen
         baskets.draw(SCREEN)
         nuts.draw(SCREEN)
         fg.draw(SCREEN)
@@ -138,20 +132,20 @@ async def level():
 
         frame += 1
 
+        # End game
         if (len(beats) == 0):
             counter += 1
             if counter >= 120:
                 run = False
-        print(frame, pygame.mixer.music.get_busy())
 
         fade = h.fade_in_animation(fade)
 
         pygame.display.flip()
-        print("playing")
         
         await asyncio.sleep(0)
     
     await h.fade_out_animation(clock)
+    pygame.mixer.music.unload()
 
     if quit:
         return "quit"

@@ -50,7 +50,6 @@ class image(pygame.sprite.Sprite):
         if ((self.rect.centerx < (glide_to[0]-deadzone)) or self.rect.centerx > (glide_to[0]+deadzone)) or ((self.rect.centery < (glide_to[1]-deadzone)) or self.rect.centery > (glide_to[1]+deadzone)):
             self.rect.x += self.x_speed
             self.rect.y += self.y_speed
-            print(self.get_pos(), glide_to)
             return True
         self.rect.center = glide_to
         return False

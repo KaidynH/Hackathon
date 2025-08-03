@@ -1,13 +1,9 @@
 import asyncio
 import pygame
-import time
 from globals import *
-import json
 import helpers as h
 
 async def ending(stats):
-    print("ENDING")
-
     # Stats
     score = stats["score"]
     combo = stats["combo"]
@@ -55,20 +51,16 @@ async def ending(stats):
             if event.type == pygame.QUIT:
                 run = False
                 quit = True
-
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_q:
-                    run = False
-                    quit = True
             
         # Screen updates
+        squirrels.update()
         SCREEN.blit(background, (0,-100))
         baskets.draw(SCREEN)
 
-        SCREEN.blit(wood, (100, 250))
-        SCREEN.blit(score_txt, (140, 270))
-        SCREEN.blit(combo_txt, (140, 310))
-        SCREEN.blit(collected_txt, (140, 350))
+        SCREEN.blit(wood, (100, 270))
+        SCREEN.blit(score_txt, (140, 290))
+        SCREEN.blit(combo_txt, (140, 330))
+        SCREEN.blit(collected_txt, (140, 370))
         
         fg.draw(SCREEN)
         squirrels.draw(SCREEN)
@@ -86,6 +78,7 @@ async def ending(stats):
         await asyncio.sleep(0)
     
     await h.fade_out_animation(clock)
+    pygame.mixer.music.unload()
 
     if quit:
         return "quit"

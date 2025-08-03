@@ -21,7 +21,7 @@ song = "music/song2.ogg"
 FPS = 30
 
 # Music
-VOLUME = 0.2
+VOLUME = 0.075
 
 # Nut image
 nuts_image = pygame.image.load("graphics/acorn.png")

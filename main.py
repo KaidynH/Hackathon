@@ -16,7 +16,6 @@ async def main():
         stats = await level.level()
         if stats == "quit":
             return
-        print("STATUS:", stats)
         
         status = await ending.ending(stats)
         if status == "quit":
