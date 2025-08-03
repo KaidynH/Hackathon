@@ -6,6 +6,7 @@ import json
 import helpers as h
 
 async def level():
+    print("LEVEL")
     # Score
     nuts_collected = 0
     nuts_total = 0
@@ -17,6 +18,7 @@ async def level():
     # Time
     clock = pygame.time.Clock()
     frame = 1
+    counter = 1
 
     beats = h.load_beats("level1.json")
 
@@ -26,8 +28,8 @@ async def level():
     pygame.mixer.music.load(song)
 
     # Sound effects
-    wrong_sound = pygame.mixer.Sound("music/wrong.mp3")
-    swoop = pygame.mixer.SoundType("music/swoop.mp3")
+    wrong_sound = pygame.mixer.Sound("music/wrong.ogg")
+    swoop = pygame.mixer.SoundType("music/swoop.ogg")
     swoop.set_volume(3)
 
     # Background image
@@ -114,16 +116,20 @@ async def level():
 
         frame += 1
 
-        if not pygame.mixer.music.get_busy():
-            run = False
+        if (len(beats) == 0):
+            counter += 1
+            if counter >= 120:
+                run = False
+        print(frame, pygame.mixer.music.get_busy())
 
         fade = h.fade_in_animation(fade)
 
         pygame.display.flip()
+        print("playing")
 
         await asyncio.sleep(0)
     
-    h.fade_out_animation(clock)
+    await h.fade_out_animation(clock)
 
     if quit:
         return "quit"

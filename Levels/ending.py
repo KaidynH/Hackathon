@@ -6,6 +6,7 @@ import json
 import helpers as h
 
 async def ending():
+    print("ENDING")
 
     # Time
     clock = pygame.time.Clock()
@@ -14,7 +15,7 @@ async def ending():
     # Start music
     pygame.mixer.init()
     pygame.mixer.music.set_volume(VOLUME)
-    pygame.mixer.music.load("music/song1.mp3")
+    pygame.mixer.music.load("music/song1.ogg")
     pygame.mixer.music.play()
 
     # Background image

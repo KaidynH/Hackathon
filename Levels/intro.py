@@ -10,8 +10,8 @@ async def intro():
     frame = 1
 
     # Sound effects
-    note = pygame.mixer.Sound("music/note.mp3")
-    rustling = pygame.mixer.Sound("music/leaves.mp3")
+    note = pygame.mixer.Sound("music/note.ogg")
+    rustling = pygame.mixer.Sound("music/leaves.ogg")
     rustling.play()
 
     # Background image

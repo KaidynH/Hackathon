@@ -15,7 +15,7 @@ SCREEN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Hackathon")
 
 # Song
-song = "music/song2.mp3"
+song = "music/song2.ogg"
 
 # Frames timing
 FPS = 30
