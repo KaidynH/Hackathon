@@ -17,6 +17,7 @@ async def level():
     clock = pygame.time.Clock()
     frame = 1
 
+    # Nuts timing
     nuts_beats = h.load_beats("level1.json")
     print(nuts_beats, len(nuts_beats), nuts_beats[80])
 
@@ -27,7 +28,7 @@ async def level():
     pygame.mixer.music.play()
 
     # Sound effects
-    wrong_sound = pygame.mixer.Sound("music/wrong1.mp3")
+    wrong_sound = pygame.mixer.Sound("music/wrong.mp3")
     swoop = pygame.mixer.SoundType("music/swoop.mp3")
     swoop.set_volume(3)
 
@@ -35,6 +36,9 @@ async def level():
     beats = json.load(file)
     beat_index = 0
     print(len(beats))
+
+    # Background image
+    background = pygame.image.load("graphics/background.png")
 
     # Runner variable
     run = True
@@ -104,7 +108,8 @@ async def level():
 
         
         # Screen updates
-        SCREEN.fill((0,0,0))
+        # SCREEN.fill((0,0,0))
+        SCREEN.blit(background, (0,0))
         baskets.draw(SCREEN)
         squirrels.draw(SCREEN)
         nuts.draw(SCREEN)

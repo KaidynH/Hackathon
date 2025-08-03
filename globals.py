@@ -4,6 +4,8 @@ from Sprites.squirrels import squirrel
 from Sprites.nuts import nut
 from Sprites.hitboxes import hitbox
 from Sprites.buttons import button
+from Sprites.branch import branch
+from Sprites.image import image
 
 # Screen setup
 WIDTH = 600
@@ -54,6 +56,8 @@ start_btn = button((WIDTH//2, HEIGHT//2), "start.png", (200,200))
 fg = pygame.sprite.Group(
     start_btn
 )
+
+tree = branch((300, 200))
 
 keys = [
     {"key": pygame.K_f, "hitbox": f_hitbox},
