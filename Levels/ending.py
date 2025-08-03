@@ -20,18 +20,7 @@ async def ending():
     # Background image
     background = pygame.image.load("graphics/background.png")
     fade = 255
-    fg.empty()
     fg.add(restart_btn)
-
-    # Sprites edits
-    for s in squirrels:
-        s.rect.centery = 100
-    
-    for b in baskets:
-        b.image = pygame.transform.scale_by(b.image, 1.8)
-        b.rect = b.image.get_rect()
-        print(b.pos)
-        b.rect.center = b.pos
 
     # Runner variable
     run = True
@@ -55,9 +44,8 @@ async def ending():
         # Screen updates
         SCREEN.blit(background, (0,-100))
         baskets.draw(SCREEN)
-        squirrels.draw(SCREEN)
-        nuts.draw(SCREEN)
         fg.draw(SCREEN)
+        squirrels.draw(SCREEN)
 
         if restart_btn.is_clicked():
             restart = True

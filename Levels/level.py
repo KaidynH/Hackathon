@@ -20,6 +20,8 @@ async def level():
     # Time
     clock = pygame.time.Clock()
     frame = 1
+    counter = 1
+
     beats = h.load_beats("level1.json")
 
     # Start music
@@ -42,6 +44,7 @@ async def level():
         s.reset()
     for b in baskets:
         b.reset()
+    nuts.empty()
 
     # Runner variable
     run = True
@@ -120,12 +123,14 @@ async def level():
         # Screen updates
         h.create_nuts(pygame.mixer.music.get_pos(), beats)
 
-        SCREEN.fill((0,0,0))
+        # SCREEN.fill((0,0,0))
+        SCREEN.blit(background, (-30,-40))
 
         baskets.draw(SCREEN)
         squirrels.draw(SCREEN)
         nuts.draw(SCREEN)
         fg.draw(SCREEN)
+        squirrels.draw(SCREEN)
         SCREEN.blit(score_txt, (495, 30))
         SCREEN.blit(streak_txt, (450, 60))
         SCREEN.blit(multiplier_txt, (455, 30))

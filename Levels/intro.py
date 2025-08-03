@@ -18,16 +18,16 @@ async def intro():
     background = pygame.image.load("graphics/background.png")
 
     # Animation sprites
-    bg_animation = image((534,815), (1068, 1630), "background.png")
-    branch_animation = image((300, 200), (800, 450), "branch.png")
-    nut_animation = image((300, 345), (90,90), "nut.png", rot=50)
-    basket_animation = image((300, 1082), (150,150), "basket.png")
+    bg_animation = image((66,659), (2598, 1465), "forest.png")
+    branch_animation = image((300, 250), (1117, 321), "branch.png")
+    nut_animation = image((300, 345), (320,320), "acorn.png")
+    basket_animation = image((300, 1082), (150,150), "baskets/basket0.png")
     start_screen = image((300, -400), (600,800), "startScreen.png")
     play_button = button((300, 370), "play.png", (320,90))
     animations = pygame.sprite.Group(bg_animation, branch_animation, nut_animation, basket_animation, start_screen)
 
     # Basket ending image
-    basket_nut = pygame.image.load("graphics/basketnut.png")
+    basket_nut = pygame.image.load("graphics/baskets/basket1.png")
     basket_nut = pygame.transform.scale(basket_nut, (150,150))
 
     # Init variables
@@ -79,7 +79,7 @@ async def intro():
         elif frame <= 90:
             if not fall_init:
                 curr_pos = nut_animation.get_pos()
-                nut_glide = (curr_pos[0], 630)
+                nut_glide = (curr_pos[0], 640)
                 nut_animation.set_glide(47, curr_pos, nut_glide)
 
                 curr_pos = branch_animation.get_pos()
@@ -87,12 +87,12 @@ async def intro():
                 branch_animation.set_glide(47, curr_pos, branch_glide)
 
                 curr_pos = bg_animation.get_pos()
-                bg_glide = (curr_pos[0], 363)
+                bg_glide = (curr_pos[0], 17)
                 bg_animation.set_glide(47, curr_pos, bg_glide)
 
                 basket_animation.rect.centerx = nut_animation.rect.centerx
                 curr_pos = basket_animation.get_pos()
-                basket_glide = (curr_pos[0], 630)
+                basket_glide = (curr_pos[0], 640)
                 basket_animation.set_glide(47, curr_pos, basket_glide)
 
                 fall_init = True

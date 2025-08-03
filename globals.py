@@ -36,13 +36,13 @@ FADE_SURFACE = pygame.Surface((WIDTH,HEIGHT), pygame.SRCALPHA)
 FADE_FACTOR = 5
 
 # Text
-font = pygame.font.Font("fonts/Orbitron-Medium.ttf", 22)
+font = pygame.font.Font("fonts/Orbitron-Bold.ttf", 22)
 
 # Heights
 basket_height = HEIGHT - 100
 nuts_height = 200
 hitbox_offset = 35
-squirrel_height = 190
+squirrel_height = 150
 
 # Sprites
 f_basket = basket((WIDTH * 0.2, basket_height), "f")
