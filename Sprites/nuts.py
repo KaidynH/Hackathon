@@ -9,14 +9,7 @@ class nut(pygame.sprite.Sprite):
         super().__init__()
 
         # Image initialize
-        self.image = pygame.image.load("graphics/nut.png")
-        
-        # Size transformation
-        self.width = 30
-        original_width, original_height = self.image.get_size()
-        aspect_ratio = original_width / original_height
-        self.height = int(self.width / aspect_ratio)
-        self.image = pygame.transform.smoothscale(self.image, (self.width,self.height))
+        self.image = g.nuts_image
 
         # Set position
         self.rect = self.image.get_rect()

@@ -14,7 +14,7 @@ async def ending():
     # Start music
     pygame.mixer.init()
     pygame.mixer.music.set_volume(VOLUME)
-    pygame.mixer.music.load("music/song2.mp3")
+    pygame.mixer.music.load("music/song1.mp3")
     pygame.mixer.music.play()
 
     # Background image

@@ -23,6 +23,14 @@ FPS = 30
 # Music
 VOLUME = 0.2
 
+# Nut image
+nuts_image = pygame.image.load("graphics/nut.png")
+nuts_width = 30
+original_width, original_height = nuts_image.get_size()
+aspect_ratio = original_width / original_height
+nuts_height = int(nuts_width / aspect_ratio)
+nuts_image = pygame.transform.smoothscale(nuts_image, (nuts_width,nuts_height))
+
 # Fade screen
 FADE_SURFACE = pygame.Surface((WIDTH,HEIGHT), pygame.SRCALPHA)
 FADE_FACTOR = 5
