@@ -5,8 +5,27 @@ from globals import *
 import json
 import helpers as h
 
-async def ending():
+async def ending(stats):
     print("ENDING")
+
+    # Stats
+    score = stats["score"]
+    combo = stats["combo"]
+    collected = stats["collected"]
+    total = stats["total"]
+
+    # Text
+    score_txt = font.render(f"Score: {score}", True, (41, 122, 83))
+    combo_txt = font.render(f"Highest Combo: {combo}", True, (41, 122, 83))
+    collected_txt = font.render(f"Acorns Collected: {collected}/{total}", True, (41, 122, 83))
+
+    # Stats background
+    wood = pygame.image.load("graphics/end.png")
+    width = 400
+    original_width, original_height = wood.get_size()
+    aspect_ratio = original_width / original_height
+    height = int(width / aspect_ratio)
+    wood = pygame.transform.smoothscale(wood, (width,height))
 
     # Time
     clock = pygame.time.Clock()
@@ -45,6 +64,12 @@ async def ending():
         # Screen updates
         SCREEN.blit(background, (0,-100))
         baskets.draw(SCREEN)
+
+        SCREEN.blit(wood, (100, 250))
+        SCREEN.blit(score_txt, (140, 270))
+        SCREEN.blit(combo_txt, (140, 310))
+        SCREEN.blit(collected_txt, (140, 350))
+        
         fg.draw(SCREEN)
         squirrels.draw(SCREEN)
 

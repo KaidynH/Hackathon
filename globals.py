@@ -36,7 +36,7 @@ FADE_SURFACE = pygame.Surface((WIDTH,HEIGHT), pygame.SRCALPHA)
 FADE_FACTOR = 5
 
 # Text
-font = pygame.font.Font("fonts/Orbitron-Bold.ttf", 22)
+font = pygame.font.Font("fonts/Orbitron-ExtraBold.ttf", 22)
 
 # Heights
 basket_height = HEIGHT - 100
@@ -69,7 +69,7 @@ squirrels = pygame.sprite.Group(
 nuts = pygame.sprite.Group()
 
 start_btn = button((WIDTH//2, HEIGHT//2), "start.png", (200,200))
-restart_btn = button((WIDTH//2, HEIGHT//2), "restart.png", (200,200))
+restart_btn = button((WIDTH//2, HEIGHT//2+38), "restart.png", (225,59))
 fg = pygame.sprite.Group()
 
 tree = branch((300, 190))

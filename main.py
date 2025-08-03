@@ -13,12 +13,12 @@ async def main():
         return
     
     while playing:
-        status = await level.level()
-        if status == "quit":
+        stats = await level.level()
+        if stats == "quit":
             return
-        print("STATUS:", status)
+        print("STATUS:", stats)
         
-        status = await ending.ending()
+        status = await ending.ending(stats)
         if status == "quit":
             return
         playing = status == "restart"

@@ -24,6 +24,7 @@ async def level():
     counter = 1
 
     beats = h.load_beats("level1.json")
+    nuts_total = len(beats)
 
     # Start music
     pygame.mixer.init()
@@ -106,8 +107,7 @@ async def level():
             start = True
 
         # Drop nuts
-        if h.create_nuts(pygame.mixer.music.get_pos(), beats):
-            nuts_total += 1
+        h.create_nuts(pygame.mixer.music.get_pos(), beats)
 
         squirrels.update()
         for nut in nuts:
@@ -148,7 +148,7 @@ async def level():
 
         pygame.display.flip()
         print("playing")
-
+        
         await asyncio.sleep(0)
     
     await h.fade_out_animation(clock)
@@ -156,4 +156,4 @@ async def level():
     if quit:
         return "quit"
     else:
-        return (nuts_collected, nuts_total, high_streak)
+        return {"collected":nuts_collected, "total":nuts_total, "combo":high_streak, "score":score}
