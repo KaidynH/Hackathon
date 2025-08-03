@@ -39,6 +39,7 @@ async def level():
 
     # Background image
     background = pygame.image.load("graphics/background.png")
+    fade = 255
 
     # Runner variable
     run = True
@@ -121,6 +122,8 @@ async def level():
 
         if not pygame.mixer.music.get_busy():
             run = False
+
+        fade = h.fade_in_animation(fade)
 
         pygame.display.flip()
 

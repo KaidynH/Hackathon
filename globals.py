@@ -20,6 +20,10 @@ FPS = 30
 # Music
 VOLUME = 0.2
 
+# Fade screen
+FADE_SURFACE = pygame.Surface((WIDTH,HEIGHT), pygame.SRCALPHA)
+FADE_FACTOR = 5
+
 # Text
 font = pygame.font.Font("fonts/Orbitron-Medium.ttf", 22)
 

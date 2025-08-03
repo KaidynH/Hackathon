@@ -44,10 +44,11 @@ class image(pygame.sprite.Sprite):
         self.x_speed = math.ceil(x_change/frame_duration)
         self.y_speed = math.ceil(y_change/frame_duration)
 
-    def glide(self, glide_to):
-        if ((self.rect.centerx < (glide_to[0]-1)) or self.rect.centerx > (glide_to[0]+1)) or ((self.rect.centery < (glide_to[1]-1)) or self.rect.centery > (glide_to[1]+1)):
+    def glide(self, glide_to, deadzone=1):
+        if ((self.rect.centerx < (glide_to[0]-deadzone)) or self.rect.centerx > (glide_to[0]+deadzone)) or ((self.rect.centery < (glide_to[1]-deadzone)) or self.rect.centery > (glide_to[1]+deadzone)):
             self.rect.x += self.x_speed
             self.rect.y += self.y_speed
+            print(self.get_pos(), glide_to)
             return True
         self.rect.center = glide_to
         return False
