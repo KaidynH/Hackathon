@@ -14,6 +14,9 @@ pygame.init()
 SCREEN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Hackathon")
 
+# Song
+song = "music/song2.mp3"
+
 # Frames timing
 FPS = 30
 
@@ -30,6 +33,7 @@ font = pygame.font.Font("fonts/Orbitron-Medium.ttf", 22)
 # Heights
 basket_height = HEIGHT - 100
 nuts_height = 200
+hitbox_offset = 35
 
 # Sprites
 f_basket = basket((WIDTH * 0.2, basket_height))
@@ -37,10 +41,10 @@ g_basket = basket((WIDTH * 0.4, basket_height))
 h_basket = basket((WIDTH * 0.6, basket_height))
 j_basket = basket((WIDTH * 0.8, basket_height))
 
-f_hitbox = hitbox((f_basket.rect.centerx-15, f_basket.rect.centery-15))
-g_hitbox = hitbox((g_basket.rect.centerx-15, g_basket.rect.centery-15))
-h_hitbox = hitbox((h_basket.rect.centerx-15, h_basket.rect.centery-15))
-j_hitbox = hitbox((j_basket.rect.centerx-15, j_basket.rect.centery-15))
+f_hitbox = hitbox((f_basket.rect.centerx-hitbox_offset, f_basket.rect.centery-hitbox_offset))
+g_hitbox = hitbox((g_basket.rect.centerx-hitbox_offset, g_basket.rect.centery-hitbox_offset))
+h_hitbox = hitbox((h_basket.rect.centerx-hitbox_offset, h_basket.rect.centery-hitbox_offset))
+j_hitbox = hitbox((j_basket.rect.centerx-hitbox_offset, j_basket.rect.centery-hitbox_offset))
 
 baskets = pygame.sprite.Group(f_basket, g_basket, h_basket, j_basket)
 

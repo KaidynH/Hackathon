@@ -9,7 +9,7 @@ class basket(pygame.sprite.Sprite):
         self.image = pygame.image.load("graphics/basket.png")
 
         # Size transformation
-        self.width = 75
+        self.width = 85
         original_width, original_height = self.image.get_size()
         aspect_ratio = original_width / original_height
         self.height = int(self.width / aspect_ratio)
